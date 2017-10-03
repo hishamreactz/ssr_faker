@@ -40995,68 +40995,70 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var Example = function (_Component) {
-    _inherits(Example, _Component);
+  _inherits(Example, _Component);
 
-    function Example(props) {
-        _classCallCheck(this, Example);
+  function Example(props) {
+    _classCallCheck(this, Example);
 
-        return _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).call(this, props));
-    }
+    return _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).call(this, props));
+  }
 
-    _createClass(Example, [{
-        key: 'render',
-        value: function render() {
+  _createClass(Example, [{
+    key: 'render',
+    value: function render() {
 
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'container' },
+        this.props.products.data.map(function (item) {
+          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { key: item.id, className: 'row' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'col-sm-6 col-md-4' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'container' },
+                { className: 'thumbnail' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'ss.jpg', alt: 'ss' }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'row' },
+                  'div',
+                  { className: 'caption' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'h3',
+                    null,
+                    item.name
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'p',
+                    null,
+                    '...'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'p',
+                    null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col-sm-6 col-md-4' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'thumbnail' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'ss.jpg', alt: 'ss' }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'caption' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'h3',
-                                    null,
-                                    this.props.products.data
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'p',
-                                    null,
-                                    '...'
-                                ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'p',
-                                    null,
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'a',
-                                        { href: '#', className: 'btn btn-primary', role: 'button' },
-                                        'Button'
-                                    ),
-                                    ' ',
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'a',
-                                        { href: '#', className: 'btn btn-default', role: 'button' },
-                                        'Button'
-                                    )
-                                )
-                            )
-                        )
+                      'a',
+                      { href: '#', className: 'btn btn-primary', role: 'button' },
+                      'Button'
+                    ),
+                    ' ',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'a',
+                      { href: '#', className: 'btn btn-default', role: 'button' },
+                      'Button'
                     )
+                  )
                 )
-            );
-        }
-    }]);
+              )
+            )
+          );
+        })
+      );
+    }
+  }]);
 
-    return Example;
+  return Example;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Example);
@@ -41064,11 +41066,11 @@ var Example = function (_Component) {
 
 if (document.getElementById('example')) {
 
-    var element = document.getElementById('example');
+  var element = document.getElementById('data');
 
-    var data = element.getAttribute('name');
+  var data = JSON.parse(element.value);
 
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example, { products: { data: data } }), document.getElementById('example'));
+  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example, { products: { data: data } }), document.getElementById('example'));
 }
 
 /***/ }),

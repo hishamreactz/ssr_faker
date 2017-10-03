@@ -11,18 +11,22 @@ export default class Example extends Component {
 
         return (
             <div className="container">
-                <div className="row">
+         {this.props.products.data.map(item => (
+          
+                <div key={item.id} className="row">
                   <div className="col-sm-6 col-md-4">
                     <div className="thumbnail">
                       <img src="ss.jpg" alt="ss"/>
                       <div className="caption">
-                        <h3>{this.props.products.data}</h3>
+                        <h3>{item.name}</h3>
                         <p>...</p>
                         <p><a href="#" className="btn btn-primary" role="button">Button</a> <a href="#" className="btn btn-default" role="button">Button</a></p>
                       </div>
                     </div>
                   </div>
                 </div>
+
+         ))}
             </div>
         );
     }
@@ -30,9 +34,10 @@ export default class Example extends Component {
 
 if (document.getElementById('example')) {
 
-    let element = document.getElementById('example');
+    let element = document.getElementById('data');
 
-    let data = element.getAttribute('name');
+    let data = JSON.parse(element.value);
+
 
 
     ReactDOM.render(<Example products={{data}}/>, document.getElementById('example'));

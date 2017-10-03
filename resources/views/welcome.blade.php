@@ -85,7 +85,11 @@
 
                 @extends('layouts.app')
 
-                <div name="{{$name}}" id="example"></div>
+                <div  id="example">
+                    
+                    <textarea id="data" style="display:none;">{{$products}}</textarea>
+
+                </div>
 
             </div>
         </div>
