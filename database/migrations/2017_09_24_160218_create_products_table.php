@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->float('price', 8, 2);
-            $table->integer('brand')->unsigned();
+            $table->integer('brand_id')->unsigned();
             $table->integer('processor_type')->unsigned();
             $table->integer('screen_size')->unsigned();
             $table->boolean('touch_screen');

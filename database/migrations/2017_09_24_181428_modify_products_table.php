@@ -15,9 +15,9 @@ class ModifyProductsTable extends Migration
     {
          Schema::table('products', function (Blueprint $table) {
             
-            // $table->foreign('brand')->references('id')->on('brands');
-            // $table->foreign('processor_type')->references('id')->on('processors');
-            // $table->foreign('screen_size')->references('id')->on('measurements');
+            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->foreign('processor_type')->references('id')->on('processors');
+            $table->foreign('screen_size')->references('id')->on('measurements');
          
          });
     }
@@ -29,8 +29,8 @@ class ModifyProductsTable extends Migration
      */
     public function down()
     {
-        // $table->dropForeign('products_brand_foreign');
-        // $table->dropForeign('products_processor_type_foreign');
-        // $table->dropForeign('products_screen_size_type_foreign');
+        $table->dropForeign('products_brand_foreign');
+        $table->dropForeign('products_processor_type_foreign');
+        $table->dropForeign('products_screen_size_type_foreign');
     }
 }

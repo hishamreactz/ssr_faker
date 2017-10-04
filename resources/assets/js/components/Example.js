@@ -11,10 +11,11 @@ export default class Example extends Component {
 
         return (
             <div className="container">
+              <div  className="row">
          {this.props.products.data.map(item => (
           
-                <div key={item.id} className="row">
-                  <div className="col-sm-6 col-md-4">
+                
+                  <div key={item.id} className="col-sm-6 col-md-4">
                     <div className="thumbnail">
                       <img src="ss.jpg" alt="ss"/>
                       <div className="caption">
@@ -24,9 +25,10 @@ export default class Example extends Component {
                       </div>
                     </div>
                   </div>
-                </div>
+                
 
          ))}
+         </div>
             </div>
         );
     }

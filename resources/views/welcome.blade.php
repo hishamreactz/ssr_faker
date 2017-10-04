@@ -77,19 +77,28 @@
                     @endauth
                 </div>
             @endif
+{{--  
+        @extends('layouts.app')  --}}
 
             <div class="content">
                 <div class="title m-b-md">
                     Products
                 </div>
 
-                @extends('layouts.app')
+                @php ($productos = [])
+                @foreach ($products as $key => $product)
+                @php (array_push($productos,$product))
+                @endforeach
+                @php ($productos = json_encode($productos))
+
 
                 <div  id="example">
                     
-                    <textarea id="data" style="display:none;">{{$products}}</textarea>
+                    <textarea id="data" style="display:none;">{{$productos}}</textarea>
 
                 </div>
+
+                 {{ $products->links() }}
 
             </div>
         </div>

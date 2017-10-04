@@ -21,7 +21,7 @@ class ProductsTableSeeder extends Seeder
         'name'           => 'Inspiron 3520',
         'image'          => 'inspiron3520.jpg',
         'price'          =>  192.50,
-        'brand'          =>  1,
+        'brand_id'          =>  1,
         'processor_type' =>  1,
         'screen_size'    =>  1,
         'touch_screen'   =>  0,

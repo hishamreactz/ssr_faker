@@ -14,8 +14,17 @@ class ProductsController extends Controller
   
     public function index()
     {
+      
+    	$products = Product::with('brand')->paginate(9);
+        return view('products')->with('products', $products);
+    }
 
-    	$products = Product::all();
-        return view('welcome')->with('products', $products);
+    public function filter_products(Request $request){
+
+        dd($request);
+
+        $products = Product::with('brand')->paginate(9);
+        return view('products')->with('products', $products);
+
     }
 }
