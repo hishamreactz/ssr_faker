@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class Measurement extends Model
 {
-    protected $fillable = [
-        'name'
+           protected $fillable = [
+        'screen_size'
     ];
-    
-    public function products()
+
+        public function products()
     {
         return $this->hasMany('App\Product');
     }

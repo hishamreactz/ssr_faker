@@ -4,14 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class Processor extends Model
 {
-    protected $fillable = [
-        'name'
+       protected $fillable = [
+        'name','gen','make'
     ];
-    
-    public function products()
+
+        public function products()
     {
         return $this->hasMany('App\Product');
     }
+    
 }

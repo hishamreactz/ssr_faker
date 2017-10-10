@@ -13,7 +13,20 @@ class Product extends Model
 
     public function brand(){
 
-       return $this->belongsTo('App\Brand');
+       return $this->belongsTo('App\Brand','brand_id');
+       
+    }
+
+        public function screen_size(){
+
+       return $this->belongsTo('App\Measurement','screen_size');
+       
+    }
+
+
+        public function processor(){
+
+       return $this->belongsTo('App\Processor','processor_type');
        
     }
 }

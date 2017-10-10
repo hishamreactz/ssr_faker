@@ -53524,6 +53524,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -53539,19 +53541,112 @@ var FilterPanel = function (_Component) {
     function FilterPanel(props) {
         _classCallCheck(this, FilterPanel);
 
-        return _possibleConstructorReturn(this, (FilterPanel.__proto__ || Object.getPrototypeOf(FilterPanel)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (FilterPanel.__proto__ || Object.getPrototypeOf(FilterPanel)).call(this, props));
+
+        _this.state = {
+
+            brands: [],
+            processors: [],
+            screensizes: [],
+            touch: false,
+            availability: false,
+            range: ''
+
+        };
+
+        _this.handleInputChange = _this.handleInputChange.bind(_this);
+        return _this;
     }
 
     _createClass(FilterPanel, [{
+        key: 'handleInputChange',
+        value: function handleInputChange(event) {
+            var target = event.target;
+            var value = target.type === 'checkbox' ? target.checked : target.value;
+            var name = target.name;
+
+            if (JSON.stringify(value) == "true") {
+
+                if (name == 'brand') {
+
+                    this.state.brands.indexOf(target.value) != -1 ? '' : this.state.brands.push(target.value);
+                }
+
+                if (name == 'screensize') {
+
+                    this.state.screensizes.indexOf(target.value) != -1 ? '' : this.state.screensizes.push(target.value);
+                }
+
+                if (name == 'processor') {
+
+                    this.state.processors.indexOf(target.value) != -1 ? '' : this.state.processors.push(target.value);
+                }
+
+                if (name == 'touch') {
+
+                    this.state.touch = true;
+                }
+
+                if (name == 'availability') {
+
+                    this.state.availability = true;
+                }
+
+                this.state.range = localStorage.getItem('range');
+            } else if (JSON.stringify(value) == "false") {
+
+                if (name == 'brand') {
+
+                    var index = this.state.brands.indexOf(target.value);
+
+                    index > -1 ? this.state.brands.splice(index, 1) : '';
+                }
+
+                if (name == 'processor') {
+
+                    var index = this.state.processors.indexOf(target.value);
+
+                    index > -1 ? this.state.processors.splice(index, 1) : '';
+                }
+
+                if (name == 'screensize') {
+
+                    var index = this.state.screensizes.indexOf(target.value);
+
+                    index > -1 ? this.state.screensizes.splice(index, 1) : '';
+                }
+
+                if (name == 'touch') {
+
+                    this.state.touch = false;
+                }
+
+                if (name == 'availability') {
+
+                    this.state.availability = false;
+                }
+
+                this.state.range = localStorage.getItem('range');
+            } else {
+
+                this.setState(_defineProperty({}, name, value));
+
+                this.state.range = localStorage.getItem('range');
+            }
+
+            console.log(this.state);
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'row' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { id: 'filter-panel', className: 'collapse filter-panel' },
+                    { id: 'filter-panel', className: ' filter-panel' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'panel panel-default' },
@@ -53560,41 +53655,129 @@ var FilterPanel = function (_Component) {
                             { className: 'panel-body' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'form',
-                                { className: 'form-inline', role: 'form' },
+                                { method: 'post', action: 'filter', className: 'form-inline', role: 'form' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'hidden', name: '_token', value: this.props.brands.data[0].csrf }),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'div',
-                                    { className: 'progress' },
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'indeterminate' })
+                                    { className: 'form-group col' },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'h5',
+                                        null,
+                                        'Brands:'
+                                    ),
+                                    this.props.brands.data.map(function (item, i) {
+                                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'p',
+                                            { key: item.brand.id },
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { name: 'brand[]', onChange: _this2.handleInputChange, type: 'checkbox', value: item.brand.id, id: item.brand.id }),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'label',
+                                                { htmlFor: item.brand.id },
+                                                item.brand.name
+                                            )
+                                        );
+                                    })
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'div',
-                                    { className: 'form-group' },
+                                    { className: 'form-group col' },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'h5',
+                                        null,
+                                        'Processors:'
+                                    ),
+                                    this.props.brands.data.map(function (item, i) {
+                                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'p',
+                                            { key: item.processor.id },
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { name: 'processor[]', onChange: _this2.handleInputChange, type: 'checkbox', value: item.processor.id, id: item.processor.name }),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'label',
+                                                { htmlFor: item.processor.name },
+                                                item.processor.name
+                                            )
+                                        );
+                                    })
+                                ),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'div',
+                                    { className: 'form-group col' },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'h5',
+                                        null,
+                                        'Screen sizes:'
+                                    ),
+                                    this.props.brands.data.map(function (item, i) {
+                                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                            'p',
+                                            { key: item.screen_size.id },
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { name: 'screensize[]', onChange: _this2.handleInputChange, type: 'checkbox', value: item.screen_size.id, id: item.screen_size.screen_size }),
+                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                                'label',
+                                                { htmlFor: item.screen_size.screen_size },
+                                                item.screen_size.screen_size
+                                            )
+                                        );
+                                    })
+                                ),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'div',
+                                    { className: 'form-group col' },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'h5',
+                                        null,
+                                        'Touch screen :'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                                        name: 'touch',
+                                        type: 'checkbox',
+                                        onChange: this.handleInputChange,
+                                        id: 'zxa' }),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         'label',
-                                        { className: 'filter-col' },
-                                        'Price range:'
+                                        { htmlFor: 'zxa' },
+                                        'TOUCH'
                                     ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'hidden', name: 'range', value: localStorage.getItem('range') })
+                                ),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'div',
+                                    { className: 'form-group col' },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'select',
-                                        { id: 'pref-orderby', className: 'form-control' },
-                                        this.props.brands.data.map(function (item, i) {
-                                            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                'option',
-                                                { key: item.brand.id },
-                                                item.brand.name
-                                            );
-                                        })
+                                        'h5',
+                                        null,
+                                        'Stock outs :'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                                        name: 'availability',
+                                        type: 'checkbox',
+                                        onChange: this.handleInputChange,
+                                        id: 'sada' }),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'label',
+                                        { htmlFor: 'sada' },
+                                        'Stock outs'
                                     )
+                                ),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'div',
+                                    { className: 'form-group col' },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'h5',
+                                        null,
+                                        'Price filter  :'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'test-slider' })
+                                ),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'button',
+                                    { type: 'submit', className: 'btn btn-primary valign-wrapper' },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'glyphicon glyphicon-cog' }),
+                                    '  Search Products'
                                 )
                             )
                         )
                     )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'button',
-                    { type: 'button', className: 'btn btn-primary', 'data-toggle': 'collapse', 'data-target': '#filter-panel' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'glyphicon glyphicon-cog' }),
-                    '  Search Products'
                 )
             );
         }

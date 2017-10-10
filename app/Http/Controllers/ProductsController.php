@@ -15,9 +15,11 @@ class ProductsController extends Controller
     public function index()
     {
       
-    	$products = Product::with('brand')->paginate(9);
+    	$products = Product::with('brand','processor','screen_size')->paginate(9);
         return view('products')->with('products', $products);
     }
+
+
 
     public function filter_products(Request $request){
 
