@@ -41090,9 +41090,13 @@ if (document.getElementById('example')) {
 
   var element = document.getElementById('data');
 
-  var data = JSON.parse(element.value);
+  var data = JSON.stringify(element.value);
 
-  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example, { products: { data: data } }), document.getElementById('example'));
+  data = JSON.parse(data);
+
+  console.log(data);
+
+  // ReactDOM.render(<Example products={{data}}/>, document.getElementById('example'));
 }
 
 /***/ }),
@@ -53656,7 +53660,7 @@ var FilterPanel = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'form',
                                 { method: 'post', action: 'filter', className: 'form-inline', role: 'form' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'hidden', name: '_token', value: this.props.brands.data[0].csrf }),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'hidden', name: '_token', value: this.props.brands.csrf }),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'div',
                                     { className: 'form-group col' },
@@ -53665,7 +53669,7 @@ var FilterPanel = function (_Component) {
                                         null,
                                         'Brands:'
                                     ),
-                                    this.props.brands.data.map(function (item, i) {
+                                    this.props.brands.brands.data.map(function (item, i) {
                                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'p',
                                             { key: item.brand.id },
@@ -53686,7 +53690,7 @@ var FilterPanel = function (_Component) {
                                         null,
                                         'Processors:'
                                     ),
-                                    this.props.brands.data.map(function (item, i) {
+                                    this.props.brands.processors.data.map(function (item, i) {
                                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'p',
                                             { key: item.processor.id },
@@ -53707,7 +53711,7 @@ var FilterPanel = function (_Component) {
                                         null,
                                         'Screen sizes:'
                                     ),
-                                    this.props.brands.data.map(function (item, i) {
+                                    this.props.brands.screen_sizes.data.map(function (item, i) {
                                         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                             'p',
                                             { key: item.screen_size.id },
@@ -53793,11 +53797,11 @@ if (document.getElementById('filter')) {
 
     var element = document.getElementById('brands');
 
-    var data = JSON.parse(element.value);
+    var data = JSON.stringify(element.value);
 
     console.log(data);
 
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FilterPanel, { brands: { data: data } }), document.getElementById('filter'));
+    // ReactDOM.render(<FilterPanel brands={{data}} />, document.getElementById('filter'));
 }
 
 /***/ }),

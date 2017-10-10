@@ -131,12 +131,12 @@ handleInputChange(event) {
 
 
 
-<input type="hidden" name="_token" value={this.props.brands.data[0].csrf}/>
+<input type="hidden" name="_token" value={this.props.brands.csrf}/>
 
   <div className="form-group col">
   <h5 >Brands:</h5>
 
-  {this.props.brands.data.map((item,i) => (
+  {this.props.brands.brands.data.map((item,i) => (
       
 
 
@@ -158,7 +158,7 @@ handleInputChange(event) {
   <div className="form-group col">
   <h5 >Processors:</h5>
 
-  {this.props.brands.data.map((item,i) => (
+  {this.props.brands.processors.data.map((item,i) => (
       
 
 
@@ -178,7 +178,7 @@ handleInputChange(event) {
   <div className="form-group col">
   <h5 >Screen sizes:</h5>
 
-  {this.props.brands.data.map((item,i) => (
+  {this.props.brands.screen_sizes.data.map((item,i) => (
       
 
 
@@ -251,11 +251,12 @@ if (document.getElementById('filter')) {
 
     let element = document.getElementById('brands');
 
-    let data = JSON.parse(element.value);
+    let data = JSON.stringify(element.value);
 
     console.log(data);
 
 
 
-    ReactDOM.render(<FilterPanel brands={{data}} />, document.getElementById('filter'));
+
+    // ReactDOM.render(<FilterPanel brands={{data}} />, document.getElementById('filter'));
 }

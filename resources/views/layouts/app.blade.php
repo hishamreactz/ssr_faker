@@ -12,8 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.min.css">
+             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.min.css">
 
 </head>
 <body>
@@ -80,52 +79,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.1.0/wNumb.min.js"></script>
- 
-
-  <script>
-      
-var range = document.getElementById('test-slider');
-
-range.style.width = '200px';
-range.style.margin = '41px auto 30px';
-
-noUiSlider.create(range, {
-    start: [150,500],  // 4 handles, starting at...
-    margin: 300, // Handles must be at least 300 apart
-                // ... but no more than 600
-    connect: true, // Display a colored bar between the handles
-    direction: 'ltr', // Put '0' at the bottom of the slider
-    orientation: 'horizontal', // Orient the slider vertically
-    behaviour: 'tap-drag', // Move handle on tap, bar is draggable
-    step: 150,
-    tooltips: true,
-    format: wNumb({
-        decimals: 0
-    }),
-    range: {
-        'min': 0,
-        'max': 1000
-    },
-    pips: { // Show a scale with the slider
-        mode: 'steps',
-        stepped: true,
-        density: 4
-    }
-});
 
 
-
-range.noUiSlider.on('change', ()=>{
-    var ranges = range.noUiSlider.get();
-    localStorage.setItem('range',ranges);
-});
-
-
-
-  </script>
 </body>
 </html>

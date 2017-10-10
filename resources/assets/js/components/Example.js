@@ -38,9 +38,13 @@ if (document.getElementById('example')) {
 
     let element = document.getElementById('data');
 
-    let data = JSON.parse(element.value);
+    let data = JSON.stringify(element.value);
+
+    data = JSON.parse(data);
+
+    console.log(data);
 
 
 
-    ReactDOM.render(<Example products={{data}}/>, document.getElementById('example'));
+    // ReactDOM.render(<Example products={{data}}/>, document.getElementById('example'));
 }
